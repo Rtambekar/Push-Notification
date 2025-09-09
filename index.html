@@ -1,0 +1,1115 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>🔔Push notification (Expo react native)</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.collection-content td {
+	white-space: pre-wrap;
+	word-break: break-word;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	padding-inline-start: 0;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.page-description {
+	margin-bottom: 2em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+blockquote.quote-large {
+	font-size: 1.25em;
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(50, 48, 44, 1);
+}
+.highlight-gray {
+	color: rgba(115, 114, 110, 1);
+	fill: rgba(115, 114, 110, 1);
+}
+.highlight-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.highlight-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.highlight-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.highlight-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.highlight-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(205, 60, 58, 1);
+	fill: rgba(205, 60, 58, 1);
+}
+.highlight-default_background {
+	color: rgba(50, 48, 44, 1);
+}
+.highlight-gray_background {
+	background: rgba(248, 248, 247, 1);
+}
+.highlight-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.highlight-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.highlight-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.highlight-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.highlight-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.highlight-purple_background {
+	background: rgba(248, 243, 252, 1);
+}
+.highlight-pink_background {
+	background: rgba(252, 241, 246, 1);
+}
+.highlight-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(115, 114, 110, 1);
+	fill: rgba(115, 114, 110, 1);
+}
+.block-color-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.block-color-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.block-color-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.block-color-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.block-color-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(205, 60, 58, 1);
+	fill: rgba(205, 60, 58, 1);
+}
+.block-color-default_background {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray_background {
+	background: rgba(248, 248, 247, 1);
+}
+.block-color-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.block-color-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.block-color-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.block-color-purple_background {
+	background: rgba(248, 243, 252, 1);
+}
+.block-color-pink_background {
+	background: rgba(252, 241, 246, 1);
+}
+.block-color-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.select-value-color-default { background-color: rgba(42, 28, 0, 0.07); }
+.select-value-color-gray { background-color: rgba(28, 19, 1, 0.11); }
+.select-value-color-brown { background-color: rgba(127, 51, 0, 0.156); }
+.select-value-color-orange { background-color: rgba(196, 88, 0, 0.203); }
+.select-value-color-yellow { background-color: rgba(209, 156, 0, 0.282); }
+.select-value-color-green { background-color: rgba(0, 96, 38, 0.156); }
+.select-value-color-blue { background-color: rgba(0, 99, 174, 0.172); }
+.select-value-color-purple { background-color: rgba(92, 0, 163, 0.141); }
+.select-value-color-pink { background-color: rgba(183, 0, 78, 0.152); }
+.select-value-color-red { background-color: rgba(206, 24, 0, 0.164); }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="25daebb4-7c35-80f2-9f31-c776b5d308f0" class="page sans"><header><img class="page-cover-image" src="https://images.unsplash.com/photo-1514464750060-00e6e34c8b8c?ixlib=rb-4.1.0&amp;q=85&amp;fm=jpg&amp;crop=entropy&amp;cs=srgb" style="object-position:center 50%"/><h1 class="page-title">🔔Push notification (Expo react native)</h1><p class="page-description"></p></header><div class="page-body"><h2 id="25daebb4-7c35-80dd-a163-f8354d736621" class="">Tech Stack</h2><ul id="25daebb4-7c35-80c0-9a6d-fd7b656dcbb3" class="bulleted-list"><li style="list-style-type:disc"><strong>Notifee Library</strong> - Local notification display and management</li></ul><ul id="25daebb4-7c35-8071-b0cd-feec72636f83" class="bulleted-list"><li style="list-style-type:disc"><strong>Firebase App</strong> - Core Firebase functionality</li></ul><ul id="25daebb4-7c35-8045-a19e-f25ee7b0aa87" class="bulleted-list"><li style="list-style-type:disc"><strong>Firebase Cloud Messaging (FCM)</strong> - Push notification delivery</li></ul><ul id="25daebb4-7c35-8030-9845-f3527362bdca" class="bulleted-list"><li style="list-style-type:disc"><strong>React Native / Expo</strong> - Development framework</li></ul><h2 id="25daebb4-7c35-801c-b814-e53b10269fc7" class="">Overview</h2><p id="25daebb4-7c35-80aa-bbf2-c0cf2ac769f2" class="">This comprehensive guide explains how to implement push notifications in an Expo project using Notifee and Firebase Cloud Messaging (FCM). Since Expo Go does not support custom native modules like Notifee or FCM, you will need to create a custom development client using EAS Build.</p><hr id="25daebb4-7c35-8068-a822-c523ff6c8042"/><h2 id="25daebb4-7c35-8045-9e12-d2aec2424c01" class="">Step 1: Install Required Packages</h2><h3 id="25daebb4-7c35-809a-be95-c9c909eaecce" class="">1. Notifee Installation</h3><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="25daebb4-7c35-80f6-9b80-cd8fa2b1a1ba" class="code code-wrap"><code class="language-Bash" style="white-space:pre-wrap;word-break:break-all">npm install @notifee/react-native</code></pre><h3 id="25daebb4-7c35-80de-a612-f2edd1c973aa" class="">2. Firebase Setup</h3><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="25daebb4-7c35-8084-ba91-f631f0711811" class="code code-wrap"><code class="language-Bash" style="white-space:pre-wrap;word-break:break-all">npm install @react-native-firebase/app @react-native-firebase/messaging</code></pre><hr id="25daebb4-7c35-801e-93c9-cac5c58449ba"/><h2 id="25daebb4-7c35-8034-b03a-eb57a99801dc" class="">Step 2: Setup Expo Project</h2><h3 id="25daebb4-7c35-8036-b235-e4944e6d4da6" class="">1. Create an Expo project</h3><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="25daebb4-7c35-807a-a216-dde71910e465" class="code code-wrap"><code class="language-Bash" style="white-space:pre-wrap;word-break:break-all">npx create-expo-app NotificationApp
+cd NotificationApp</code></pre><h3 id="25daebb4-7c35-80f3-a98f-fb7f6a27ab03" class="">2. Configure <code>app.json</code> or <code>app.config.js</code></h3><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="25daebb4-7c35-80b9-9e9f-f1b18306cd6d" class="code code-wrap"><code class="language-JSON" style="white-space:pre-wrap;word-break:break-all">{
+  &quot;expo&quot;: {
+    &quot;name&quot;: &quot;NotificationApp&quot;,
+    &quot;slug&quot;: &quot;notification-app&quot;,
+    &quot;version&quot;: &quot;1.0.0&quot;,
+    &quot;platforms&quot;: [&quot;android&quot;],
+    &quot;android&quot;: {
+      &quot;package&quot;: &quot;com.notifeedemo.android&quot;,
+      &quot;googleServicesFile&quot;: &quot;./google-services.json&quot;
+    },
+    &quot;plugins&quot;: [
+      &quot;@notifee/react-native&quot;,
+      &quot;@react-native-firebase/app&quot;,
+      &quot;@react-native-firebase/messaging&quot;
+    ]
+  }
+}</code></pre><h3 id="25daebb4-7c35-802f-a329-d616400fc0a7" class="">3. Configure <code>eas.json</code> for development client</h3><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="25daebb4-7c35-806f-b8ad-d404f6a99bf1" class="code code-wrap"><code class="language-JSON" style="white-space:pre-wrap;word-break:break-all">{
+  &quot;cli&quot;: {
+    &quot;version&quot;: &quot;&gt;= 16.17.4&quot;,
+    &quot;appVersionSource&quot;: &quot;remote&quot;
+  },
+  &quot;build&quot;: {
+    &quot;dev&quot;: {
+      &quot;developmentClient&quot;: true,
+      &quot;distribution&quot;: &quot;internal&quot;,
+      &quot;android&quot;: {
+        &quot;image&quot;: &quot;ubuntu-22.04-jdk-17-ndk-r25b&quot;
+      }
+    },
+    &quot;development&quot;: {
+      &quot;developmentClient&quot;: true,
+      &quot;distribution&quot;: &quot;internal&quot;
+    },
+    &quot;preview&quot;: {
+      &quot;distribution&quot;: &quot;internal&quot;
+    },
+    &quot;production&quot;: {
+      &quot;autoIncrement&quot;: true
+    }
+  },
+  &quot;submit&quot;: {
+    &quot;production&quot;: {}
+  }
+}</code></pre><h3 id="25daebb4-7c35-8009-a4f8-e361f508fdeb" class="">4. Update <code>package.json</code></h3><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="25daebb4-7c35-80bc-ba46-d0196beb8faf" class="code code-wrap"><code class="language-JSON" style="white-space:pre-wrap;word-break:break-all">{
+  &quot;scripts&quot;: {
+    &quot;start&quot;: &quot;expo start --dev-client&quot;
+  }
+}</code></pre><h3 id="25daebb4-7c35-8032-8f5f-edb69190a17f" class="">5. Build development client</h3><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="25daebb4-7c35-80de-9ec3-e07829e5f077" class="code code-wrap"><code class="language-Bash" style="white-space:pre-wrap;word-break:break-all">npx expo prebuild
+eas build --profile dev --platform android
+# Open Android Studio from terminal
+open -a &quot;Android Studio&quot; android/</code></pre><h3 id="25daebb4-7c35-800c-824d-e3f2a5531e42" class="">6. Install the dev client on your device (skip for expo)</h3><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="25daebb4-7c35-80d2-b2d3-cee29efadf7a" class="code code-wrap"><code class="language-Bash" style="white-space:pre-wrap;word-break:break-all">adb install path/to/your-app.apk</code></pre><hr id="25daebb4-7c35-8007-99dc-d12e481e4b27"/><h2 id="25daebb4-7c35-80a3-8260-df5af7e801b0" class="">Step 3: Firebase Project Setup</h2><h3 id="25daebb4-7c35-8093-beb0-c084c841c451" class="">1. Create Firebase Project</h3><ul id="25daebb4-7c35-8027-bba9-f0ab2baba1bb" class="bulleted-list"><li style="list-style-type:disc">Go to <a href="https://console.firebase.google.com/">Firebase Console</a></li></ul><ul id="25daebb4-7c35-805e-ad45-fa830afdd7e6" class="bulleted-list"><li style="list-style-type:disc">Create new project (e.g., <code>rn-notification</code>)</li></ul><ul id="25daebb4-7c35-8024-af2f-e65ffe104192" class="bulleted-list"><li style="list-style-type:disc">Add Android app with package name from <code>app.json</code></li></ul><h3 id="25daebb4-7c35-80a7-8e41-d363a4bdba95" class="">2. Generate SHA-1 Key</h3><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="25daebb4-7c35-80c5-b8fd-cb41894d9314" class="code code-wrap"><code class="language-Bash" style="white-space:pre-wrap;word-break:break-all"># Navigate to android folder and run
+cd android &amp;&amp; ./gradlew signingReport</code></pre><p id="25daebb4-7c35-80f0-88fd-e67b1c48abde" class="">Copy SHA-1 from output and add to Firebase project settings.</p><h3 id="25daebb4-7c35-8056-adf1-e7a50dd01f43" class="">3. Download Configuration</h3><p id="25daebb4-7c35-8061-bb11-c9ed7cf13c68" class="">Download <code>google-services.json</code> and place it in the <code>android/app/</code> directory.</p><h3 id="25daebb4-7c35-8082-b815-e342eedf269f" class="">4. Gradle Configuration Issues (If Any)</h3><p id="25daebb4-7c35-8099-a774-f9bcd6a84695" class="">If you encounter Gradle issues, follow these steps:</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="25daebb4-7c35-80ed-8800-c7de9fb1c67c" class="code code-wrap"><code class="language-Bash" style="white-space:pre-wrap;word-break:break-all"># Clean Gradle cache
+./gradlew --stop
+rm -rf ~/.gradle/caches/
+rm -rf .gradle
+
+# Fresh install
+cd .. # Go back to project root
+rm -rf node_modules package-lock.json
+npm install
+cd android
+./gradlew clean
+./gradlew build --refresh-dependencies</code></pre><hr id="25daebb4-7c35-80c1-afae-c872c1a97344"/><h2 id="25daebb4-7c35-806b-9f5e-d636dec43863" class="">Step 4: Code Implementation</h2><h3 id="25daebb4-7c35-8089-ad58-e13315550033" class="">1. Get FCM Token (<code>App.js</code>)</h3><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="25daebb4-7c35-80ad-8499-ef12a4a6771f" class="code code-wrap"><code class="language-JavaScript" style="white-space:pre-wrap;word-break:break-all">import messaging from &#x27;@react-native-firebase/messaging&#x27;;
+
+// Function to get FCM token
+const getFCMToken = async () =&gt; {
+  try {
+    // Request permission
+    const authStatus = await messaging().requestPermission();
+    const enabled =
+      authStatus === messaging.AuthorizationStatus.AUTHORIZED ||
+      authStatus === messaging.AuthorizationStatus.PROVISIONAL;
+    
+    if (enabled) {
+      // Get the token
+      const fcmToken = await messaging().getToken();
+      if (fcmToken) {
+        console.log(&#x27;FCM Token:&#x27;, fcmToken);
+        // Use this token to send notifications from Firebase Console or your backend
+        return fcmToken;
+      }
+    }
+  } catch (error) {
+    console.log(&#x27;Error getting FCM token:&#x27;, error);
+  }
+};</code></pre><h3 id="25daebb4-7c35-8012-b8a6-ed78d6216b0e" class="">2. Handle Three Notification States</h3><h3 id="25daebb4-7c35-800c-9e42-c4fd2485942c" class="">A. Foreground State (App is open and active)</h3><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="25daebb4-7c35-8027-a4a4-eaa202ab8e50" class="code code-wrap"><code class="language-JavaScript" style="white-space:pre-wrap;word-break:break-all">import messaging from &#x27;@react-native-firebase/messaging&#x27;;
+import notifee, { AndroidImportance } from &#x27;@notifee/react-native&#x27;;
+
+// Handle foreground notifications
+useEffect(() =&gt; {
+  const unsubscribe = messaging().onMessage(async (remoteMessage) =&gt; {
+    console.log(&#x27;Foreground notification received:&#x27;, remoteMessage);
+    
+    // Create notification channel
+    const channelId = await notifee.createChannel({
+      id: &#x27;default&#x27;,
+      name: &#x27;Default Channel&#x27;,
+      importance: AndroidImportance.HIGH,
+    });
+    
+    // Display notification using Notifee
+    await notifee.displayNotification({
+      title: remoteMessage.notification?.title,
+      body: remoteMessage.notification?.body,
+      data: remoteMessage.data,
+      android: {
+        channelId: &#x27;default&#x27;,
+        importance: AndroidImportance.HIGH,
+        pressAction: {
+          id: &#x27;default&#x27;,
+        },
+      },
+    });
+  });
+  
+  return unsubscribe; // Cleanup
+}, []);</code></pre><h3 id="25daebb4-7c35-80f8-bc66-f68ee3ca2bb9" class="">B. Background State (App is minimized)</h3><p id="25daebb4-7c35-8085-b085-cebee949a293" class="">This is handled in <code>index.js</code> file (already provided above).</p><h3 id="25daebb4-7c35-806a-aa4a-d1122bc36487" class="">C. Killed State (App is closed)</h3><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="25daebb4-7c35-802d-9ba2-e225a89c5759" class="code code-wrap"><code class="language-JavaScript" style="white-space:pre-wrap;word-break:break-all">// Handle notification when app opens from killed/background state
+useEffect(() =&gt; {
+  // App opened from quit state
+  messaging()
+    .getInitialNotification()
+    .then((remoteMessage) =&gt; {
+      if (remoteMessage) {
+        console.log(&#x27;App opened from killed state by notification:&#x27;, remoteMessage);
+        // Handle navigation or data processing
+        // Example: navigate to specific screen based on remoteMessage.data
+      }
+    });
+  
+  // App opened from background state  
+  const unsubscribe = messaging().onNotificationOpenedApp((remoteMessage) =&gt; {
+    console.log(&#x27;App opened from background state by notification:&#x27;, remoteMessage);
+    // Handle navigation or data processing
+  });
+  
+  return unsubscribe;
+}, []);</code></pre><h3 id="25daebb4-7c35-806f-9089-e9a807a764eb" class="">3. Register Background Handler (<code>index.js</code>)</h3><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="25daebb4-7c35-8092-b131-ca1071aa56d7" class="code code-wrap"><code class="language-JavaScript" style="white-space:pre-wrap;word-break:break-all">import { AppRegistry } from &#x27;react-native&#x27;;
+import App from &#x27;./App&#x27;;
+import { name as appName } from &#x27;./app.json&#x27;;
+import messaging from &#x27;@react-native-firebase/messaging&#x27;;
+import notifee, { AndroidImportance } from &#x27;@notifee/react-native&#x27;;
+
+// Register background handler
+messaging().setBackgroundMessageHandler(async (remoteMessage) =&gt; {
+  console.log(&#x27;Message handled in the background!&#x27;, remoteMessage);
+  
+  if (remoteMessage.notification) {
+    // Create channel if not exists
+    const channelId = await notifee.createChannel({
+      id: &#x27;default&#x27;,
+      name: &#x27;Default Channel&#x27;,
+      importance: AndroidImportance.HIGH,
+    });
+    
+    // Display notification
+    await notifee.displayNotification({
+      title: remoteMessage.notification.title,
+      body: remoteMessage.notification.body,
+      data: remoteMessage.data,
+      android: {
+        channelId: &#x27;default&#x27;,
+        importance: AndroidImportance.HIGH,
+        pressAction: {
+          id: &#x27;default&#x27;,
+        },
+      },
+    });
+  }
+});
+
+AppRegistry.registerComponent(appName, () =&gt; App);</code></pre><h3 id="25daebb4-7c35-8032-97cc-decf280bce20" class="">4. Complete Example (<code>App.js</code>)</h3><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="25daebb4-7c35-805c-bce1-f6bbcedd3e32" class="code code-wrap"><code class="language-JavaScript" style="white-space:pre-wrap;word-break:break-all">import React, { useEffect, useState } from &#x27;react&#x27;;
+import {
+  SafeAreaView,
+  ScrollView,
+  StatusBar,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
+  Alert,
+} from &#x27;react-native&#x27;;
+import messaging from &#x27;@react-native-firebase/messaging&#x27;;
+import notifee, { AndroidImportance } from &#x27;@notifee/react-native&#x27;;
+
+const App = () =&gt; {
+  const [fcmToken, setFcmToken] = useState(&#x27;&#x27;);
+  
+  useEffect(() =&gt; {
+    // Get FCM token on app start
+    getFCMToken();
+    
+    // Setup notification handlers
+    setupNotificationHandlers();
+  }, []);
+  
+  const getFCMToken = async () =&gt; {
+    try {
+      const authStatus = await messaging().requestPermission();
+      const enabled =
+        authStatus === messaging.AuthorizationStatus.AUTHORIZED ||
+        authStatus === messaging.AuthorizationStatus.PROVISIONAL;
+      
+      if (enabled) {
+        const fcmToken = await messaging().getToken();
+        if (fcmToken) {
+          console.log(&#x27;FCM Token:&#x27;, fcmToken);
+          setFcmToken(fcmToken);
+        }
+      }
+    } catch (error) {
+      console.log(&#x27;Error getting FCM token:&#x27;, error);
+    }
+  };
+  
+  const setupNotificationHandlers = () =&gt; {
+    // Foreground notification handler
+    const unsubscribeForeground = messaging().onMessage(async (remoteMessage) =&gt; {
+      console.log(&#x27;Foreground notification:&#x27;, remoteMessage);
+      
+      const channelId = await notifee.createChannel({
+        id: &#x27;default&#x27;,
+        name: &#x27;Default Channel&#x27;,
+        importance: AndroidImportance.HIGH,
+      });
+      
+      await notifee.displayNotification({
+        title: remoteMessage.notification?.title,
+        body: remoteMessage.notification?.body,
+        data: remoteMessage.data,
+        android: {
+          channelId: &#x27;default&#x27;,
+          importance: AndroidImportance.HIGH,
+          pressAction: {
+            id: &#x27;default&#x27;,
+          },
+        },
+      });
+    });
+    
+    // App opened from killed state
+    messaging()
+      .getInitialNotification()
+      .then((remoteMessage) =&gt; {
+        if (remoteMessage) {
+          console.log(&#x27;App opened from killed state:&#x27;, remoteMessage);
+        }
+      });
+    
+    // App opened from background state
+    const unsubscribeBackground = messaging().onNotificationOpenedApp((remoteMessage) =&gt; {
+      console.log(&#x27;App opened from background state:&#x27;, remoteMessage);
+    });
+    
+    // Cleanup function
+    return () =&gt; {
+      unsubscribeForeground();
+      unsubscribeBackground();
+    };
+  };
+  
+  const copyTokenToClipboard = () =&gt; {
+    if (fcmToken) {
+      Alert.alert(&#x27;FCM Token&#x27;, fcmToken);
+    }
+  };
+  
+  return (
+    &lt;SafeAreaView style={styles.container}&gt;
+      &lt;StatusBar barStyle=&quot;dark-content&quot; /&gt;
+      &lt;ScrollView contentStyle={styles.scrollView}&gt;
+        &lt;View style={styles.content}&gt;
+          &lt;Text style={styles.title}&gt;Push Notifications Demo&lt;/Text&gt;
+          
+          &lt;TouchableOpacity
+             style={styles.button}
+             onPress={copyTokenToClipboard}
+          &gt;
+            &lt;Text style={styles.buttonText}&gt;Show FCM Token&lt;/Text&gt;
+          &lt;/TouchableOpacity&gt;
+          
+          {fcmToken ? (
+            &lt;View style={styles.tokenContainer}&gt;
+              &lt;Text style={styles.tokenLabel}&gt;FCM Token:&lt;/Text&gt;
+              &lt;Text style={styles.tokenText} numberOfLines={3}&gt;
+                {fcmToken}
+              &lt;/Text&gt;
+              &lt;Text style={styles.instruction}&gt;
+                Use this token in Firebase Console to send test notifications
+              &lt;/Text&gt;
+            &lt;/View&gt;
+          ) : null}
+        &lt;/View&gt;
+      &lt;/ScrollView&gt;
+    &lt;/SafeAreaView&gt;
+  );
+};
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: &#x27;#f5f5f5&#x27;,
+  },
+  scrollView: {
+    flex: 1,
+  },
+  content: {
+    flex: 1,
+    padding: 20,
+    alignItems: &#x27;center&#x27;,
+  },
+  title: {
+    fontSize: 24,
+    fontWeight: &#x27;bold&#x27;,
+    marginBottom: 40,
+    color: &#x27;#333&#x27;,
+  },
+  button: {
+    backgroundColor: &#x27;#007AFF&#x27;,
+    paddingHorizontal: 20,
+    paddingVertical: 12,
+    borderRadius: 8,
+    marginBottom: 15,
+    width: &#x27;100%&#x27;,
+    alignItems: &#x27;center&#x27;,
+  },
+  buttonText: {
+    color: &#x27;white&#x27;,
+    fontSize: 16,
+    fontWeight: &#x27;600&#x27;,
+  },
+  tokenContainer: {
+    marginTop: 30,
+    padding: 15,
+    backgroundColor: &#x27;white&#x27;,
+    borderRadius: 8,
+    width: &#x27;100%&#x27;,
+  },
+  tokenLabel: {
+    fontSize: 16,
+    fontWeight: &#x27;bold&#x27;,
+    marginBottom: 10,
+    color: &#x27;#333&#x27;,
+  },
+  tokenText: {
+    fontSize: 12,
+    color: &#x27;#666&#x27;,
+    fontFamily: &#x27;monospace&#x27;,
+    marginBottom: 10,
+  },
+  instruction: {
+    fontSize: 14,
+    color: &#x27;#007AFF&#x27;,
+    fontStyle: &#x27;italic&#x27;,
+  },
+});
+
+export default App;</code></pre><h3 id="25daebb4-7c35-804e-9aa5-e9e8c00e351e" class="">5. Notification Customization</h3><p id="25daebb4-7c35-803c-a923-f1d9f447dd4e" class="">For advanced notification appearance customization, refer to the <a href="https://notifee.app/react-native/docs/android/appearance">Notifee Android Appearance Documentation</a>.</p><h3 id="25daebb4-7c35-8097-865f-f00df63ec3d7" class="">Example with Image and Custom Styling:</h3><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="25daebb4-7c35-80be-aac7-ce3f25936e63" class="code code-wrap"><code class="language-JavaScript" style="white-space:pre-wrap;word-break:break-all">// Enhanced foreground notification display
+await notifee.displayNotification({
+  title: remoteMessage.notification?.title,
+  body: remoteMessage.notification?.body,
+  data: remoteMessage.data,
+  android: {
+    channelId: &#x27;default&#x27;,
+    importance: AndroidImportance.HIGH,
+    largeIcon: &#x27;https://example.com/large-icon.png&#x27;, // URL or local image
+    style: {
+      type: AndroidStyle.BIGPICTURE,
+      picture: &#x27;https://example.com/big-picture.jpg&#x27;, // Recommended: 1000x600px
+    },
+    color: &#x27;#4285F4&#x27;,
+    smallIcon: &#x27;ic_notification&#x27;, // Custom small icon
+    pressAction: {
+      id: &#x27;default&#x27;,
+    },
+  },
+});</code></pre><hr id="25daebb4-7c35-80ef-9749-dd8180e546ba"/><h2 id="25daebb4-7c35-8009-bfc6-efbe0bb6cc16" class="">Step 5: Testing</h2><h3 id="25daebb4-7c35-80dd-a019-c6fcec3c5fce" class="">1. Build and Test</h3><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="25daebb4-7c35-8004-9908-cad4d47a39ee" class="code code-wrap"><code class="language-Bash" style="white-space:pre-wrap;word-break:break-all"># Build development client
+eas build --profile dev --platform android
+
+# Start metro bundler
+npm start</code></pre><h3 id="25daebb4-7c35-8070-9b90-f247e19e3098" class="">2. Send Test Notifications</h3><h3 id="25daebb4-7c35-8095-9986-f537b7021a78" class="">From Firebase Console:</h3><ul id="25daebb4-7c35-804c-8a67-d9813372d4d2" class="bulleted-list"><li style="list-style-type:disc">Go to Firebase Console → Cloud Messaging</li></ul><ul id="25daebb4-7c35-8056-8680-d31f5bf8fc3c" class="bulleted-list"><li style="list-style-type:disc">Click &quot;Send your first message&quot;</li></ul><ul id="25daebb4-7c35-80f8-a69d-e3c869a9817d" class="bulleted-list"><li style="list-style-type:disc">Enter title and message</li></ul><ul id="25daebb4-7c35-804d-9640-d4e06e223771" class="bulleted-list"><li style="list-style-type:disc">Select your app and send</li></ul><h3 id="25daebb4-7c35-8075-8cd7-ce08724aa01f" class="">Using FCM Token:</h3><p id="25daebb4-7c35-80bb-be31-e6961731bfac" class="">Use the token displayed in your app to send targeted notifications via Firebase Console or your backend.</p><hr id="25daebb4-7c35-80d2-bba2-ed6925a5180e"/><h2 id="25daebb4-7c35-803c-8b08-dc360d632b8f" class="">Step 6: Advanced Features</h2><h3 id="25daebb4-7c35-80db-a894-e5c50ccaaace" class="">Custom Notification Actions</h3><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="25daebb4-7c35-8020-83de-ec0bbe78bbe3" class="code code-wrap"><code class="language-JavaScript" style="white-space:pre-wrap;word-break:break-all">// In NotificationService.js or directly in your component
+async displayNotificationWithActions(title, body, data = {}) {
+  await notifee.displayNotification({
+    title,
+    body,
+    data,
+    android: {
+      channelId: &#x27;default&#x27;,
+      actions: [
+        {
+          title: &#x27;Mark as Read&#x27;,
+          pressAction: { id: &#x27;mark-as-read&#x27; },
+        },
+        {
+          title: &#x27;Reply&#x27;,
+          pressAction: { id: &#x27;reply&#x27; },
+          input: true,
+        },
+      ],
+    },
+  });
+}</code></pre><h3 id="25daebb4-7c35-8076-aafd-f39f5aa42dfd" class="">Scheduled Notifications</h3><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="25daebb4-7c35-80eb-8fe3-d01e95857155" class="code code-wrap"><code class="language-JavaScript" style="white-space:pre-wrap;word-break:break-all">// Schedule notification
+async scheduleNotification(title, body, date) {
+  const trigger = {
+    type: notifee.TriggerType.TIMESTAMP,
+    timestamp: date.getTime(),
+  };
+  
+  await notifee.createTriggerNotification(
+    {
+      title,
+      body,
+      android: {
+        channelId: &#x27;default&#x27;,
+      },
+    },
+    trigger
+  );
+}</code></pre><hr id="25daebb4-7c35-805f-b465-ee44ff75e690"/><h2 id="25daebb4-7c35-8079-9a13-c652dc9742ff" class="">Troubleshooting</h2><h3 id="25daebb4-7c35-805a-97c5-e53de0eaeefd" class="">Common Issues:</h3><ul id="25daebb4-7c35-80ea-a7c7-d6012e84027f" class="bulleted-list"><li style="list-style-type:disc"><strong>&quot;Expo Go doesn&#x27;t support native modules&quot;</strong>- Solution: Use EAS Build development client</li></ul><ul id="25daebb4-7c35-809e-8eee-ef44e79806ab" class="bulleted-list"><li style="list-style-type:disc"><strong>&quot;No FCM token received&quot;</strong>- Solution: Check Firebase configuration and permissions</li></ul><ul id="25daebb4-7c35-80fa-ac36-e0f3abd07d5a" class="bulleted-list"><li style="list-style-type:disc"><strong>&quot;Notifications not showing&quot;</strong>- Solution: Verify notification channel creation (Android)</li></ul><ul id="25daebb4-7c35-80be-a1f8-e3d5959abe8f" class="bulleted-list"><li style="list-style-type:disc"><strong>&quot;Gradle sync failed&quot;</strong>- Solution: Follow the Gradle cleanup steps in Step 3</li></ul><ul id="25daebb4-7c35-80e3-a6de-e50ea64727a6" class="bulleted-list"><li style="list-style-type:disc"><strong>&quot;Picture&quot;</strong>- Solution: Try to use image while sending from backend with 1000*600 dimension to avoid potential android error in foreground.</li></ul><ul id="25daebb4-7c35-80b0-ad97-c6df55e4d1a2" class="bulleted-list"><li style="list-style-type:disc"><strong>&quot;Small icon&quot;</strong>- Solution: notifee docs have instruction for add small icon still it can be failed giving bitmap error it still need to resolve.</li></ul><h3 id="25daebb4-7c35-80c7-a83f-d7c948b77ea0" class="">Debug Commands:</h3><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="25daebb4-7c35-8063-b8f0-cff8d4a0063c" class="code code-wrap"><code class="language-Bash" style="white-space:pre-wrap;word-break:break-all"># Check app info
+adb shell dumpsys package com.yourpackage.name
+
+# View device logs
+adb logcat | grep -i firebase
+
+# Clear app data
+adb shell pm clear com.yourpackage.name</code></pre><hr id="25daebb4-7c35-80f2-be89-fccbf190c7d5"/><h2 id="25daebb4-7c35-808c-ba07-c20e6b219bc5" class="">Production Checklist</h2><ul id="25daebb4-7c35-8023-8be2-f456decd7080" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked">Test foreground notifications</span><div class="indented"></div></li></ul><ul id="25daebb4-7c35-800a-9867-c93233fa700d" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked">Test background notifications</span><div class="indented"></div></li></ul><ul id="25daebb4-7c35-8048-a0e2-c9a746eaf86f" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked">Test killed state notifications</span><div class="indented"></div></li></ul><ul id="25daebb4-7c35-8074-b4d6-c7e65a1ea768" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked">Test notification actions</span><div class="indented"></div></li></ul><ul id="25daebb4-7c35-807a-be49-c90c9033fde6" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked">Test topic subscriptions</span><div class="indented"></div></li></ul><ul id="25daebb4-7c35-803f-bc95-f03be3a36e79" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked">Configure notification icons</span><div class="indented"></div></li></ul><ul id="25daebb4-7c35-8084-a171-c5afb0bad464" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked">Set up backend integration</span><div class="indented"></div></li></ul><ul id="25daebb4-7c35-8005-96d0-fe3a17e8db7d" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked">Test on multiple devices</span><div class="indented"></div></li></ul><ul id="25daebb4-7c35-809a-b445-eb744c334b31" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked">Create production build profile</span><div class="indented"></div></li></ul><ul id="25daebb4-7c35-8069-99f8-d8cb2c195fc7" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked">Configure Play Store settings</span><div class="indented"></div></li></ul><hr id="25daebb4-7c35-80d3-b726-ea96c45a883c"/><h2 id="25daebb4-7c35-805c-b3bc-e21cdf6fc218" class="">Additional Resources</h2><ul id="25daebb4-7c35-8095-8521-efdb7e38c58b" class="bulleted-list"><li style="list-style-type:disc"><a href="https://notifee.app/">Notifee Documentation</a></li></ul><ul id="25daebb4-7c35-80ca-aaf4-cc9f6c3a33a7" class="bulleted-list"><li style="list-style-type:disc"><a href="https://firebase.google.com/docs/cloud-messaging">Firebase Cloud Messaging</a></li></ul><ul id="25daebb4-7c35-8019-8e52-d78faed48253" class="bulleted-list"><li style="list-style-type:disc"><a href="https://docs.expo.dev/development/create-development-builds/">Expo Custom Development Clients</a></li></ul><ul id="25daebb4-7c35-809f-9f68-cc0d5aa2726c" class="bulleted-list"><li style="list-style-type:disc"><a href="https://docs.expo.dev/build/introduction/">EAS Build Documentation</a></li></ul><hr id="25daebb4-7c35-80b3-8349-c3fcb0c62ece"/><h2 id="25daebb4-7c35-803f-84ae-e7279969ea63" class="">Notes</h2><ul id="25daebb4-7c35-8036-b249-ec520af89c86" class="bulleted-list"><li style="list-style-type:disc">Always use EAS Build for native module support</li></ul><ul id="25daebb4-7c35-8071-965f-ecaf5cc63d02" class="bulleted-list"><li style="list-style-type:disc">FCM and Notifee cannot be used with Expo Go</li></ul><ul id="25daebb4-7c35-807b-aebe-e8f858af4403" class="bulleted-list"><li style="list-style-type:disc">For iOS implementation, additional configuration is required</li></ul><ul id="25daebb4-7c35-8034-9a37-e7da2a1bb3cb" class="bulleted-list"><li style="list-style-type:disc">Store FCM tokens securely in your backend</li></ul><ul id="25daebb4-7c35-806f-91e8-e800224bea7d" class="bulleted-list"><li style="list-style-type:disc">Handle notification permissions gracefully</li></ul><ul id="25daebb4-7c35-80e3-8382-c8cc115c781b" class="bulleted-list"><li style="list-style-type:disc">Test thoroughly on different Android versions</li></ul><p id="25daebb4-7c35-8011-a29c-eaec10766479" class="">
+</p></div></article><span class="sans" style="font-size:14px;padding-top:2em"></span></body></html>
